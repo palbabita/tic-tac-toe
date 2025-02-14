@@ -3,12 +3,12 @@ import Card from "../components/Card";
 import "./Grid.css";
 import isWinner from "../helper/checkWinner";
 import Confetti from "react-confetti";
-// import { useWindowSize } from "react-use";
+import { useWindowSize } from "react-use";
 function Grid({ numberOfCards }) {
   const [board, setBoard] = useState(Array(numberOfCards).fill(""));
   const [turn, setTurn] = useState(true);
   const [winner, setWinner] = useState(null);
-  // const { width, height } = useWindowSize();
+  const { width, height } = useWindowSize();
   function play(index) {
     if (turn == true) {
       board[index] = "O";
@@ -45,7 +45,7 @@ function Grid({ numberOfCards }) {
       {winner && (
         <>
           <h1 className="turn-highlight">Winner is {winner}</h1>
-          <Confetti width={1500} height={600} />
+          <Confetti width={width} height={height} />
 
           <button className="reset" onClick={resetBoard}>
             Reset Game
